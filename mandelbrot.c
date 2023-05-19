@@ -170,6 +170,7 @@ void *threaded_mandel_update(void *th_args) {
     (man_d->complex_bin_array)[i] = *bin_cpy;
   }
   printf("Thread %d Successful!\n", thread_id);
+  return 0;
 }
 // Thread Creation and Execution
 void update_mandel_create_threads(struct Thread_Args *th_args_a,

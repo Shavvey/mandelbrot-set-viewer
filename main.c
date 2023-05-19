@@ -4,27 +4,6 @@
 #define SCREEN_HEIGHT 1000
 #define NANO_PER_SEC 1000000000.0
 
-/* MandelBrot Set Plotter, Skyler Hughes
-
-        @bug
-                Saved images have alpha of 0 where color should be pure black,
-                occurs on kbuntu for unkown reasons
-
-        @todo
-                Implement even better color control
-                Implement custom movement optimzation algorithm
-                Implement 2-2 loop detection and skiping optimization
-                Implement dispersion
-
-                Update Readme with installation and other information
-
-                Better command line arguments
-                Check Memeory leaks and add more free()s
-                Document Code
-                Organize Code
-
-*/
-
 int main(int argc, char *args[]) {
 
   SDL_Window *window = NULL;
@@ -360,7 +339,7 @@ int main(int argc, char *args[]) {
     SDL_RenderPresent(renderer); // Renders new image
   }
 
-  /*Cleanup */
+  /*Cleanup*/
 
   free(man_d->complex_bin_array);
   free(man_d->complex_array);
