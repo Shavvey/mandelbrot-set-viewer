@@ -4,4 +4,4 @@ mandelbrot.o
 maincpy.c
 *.bmp
 *.met
-
+madl.dSYM
