@@ -17,4 +17,4 @@ Here's a quick example of the renderer working:
 - sdl.h
 - README.md
 
-NOTE: I won't be mainting this project, and I'll probably keep this private
+NOTE: I won't be maintaining this project any further
