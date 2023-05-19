@@ -1,25 +1,18 @@
-# using gcc to compile project
-CC = gcc
-# flags to compile project
-CLFAGS = -W -Wall -g
-# flag for SDL
-SDL_CFLAGS := $(shell sdl2-config --cflags)
-# use seperate thread to launch SDL window?
+CC=gcc
+CFLAGS=-W -Wall -g
+SDL_CFLAGS := $(shell sdl2-config --cflags) 
 SDL_LDFLAGS := $(shell sdl2-config --libs) -lm -pthread
-#source for mandelbrot c files
-MANDEL = mandelbrot.c mandelbrot.h
 
 all: main mandelbrot.o
 
-# produce mandelbrot object file, do not run linker just yet!
-mandelbrot.o: $(MANDEL)
-	$(CC) $(CLFAGS) -c mandelbrot.c -lm
+#sdl_handler.o: sdl_handler.c sdl.h
+#	$(CC) $(CFLAGS) -c sdl_handler.c
 
-# produce main executable
-main: $(MANDEL)
-	$(CC) $(CFLAGS) $(SDL_CFLAGS) $(ALL) -o mandl $(SDL_LDFLAGS)
+mandelbrot.o: mandelbrot.c mandelbrot.h
+	$(CC) $(CFLAGS) -c mandelbrot.c -lm
 
-# phony tells make that clean is not a target file, just a command
-.PHONY : clean
-	rm *.o mandl
+main: mandelbrot.o mandelbrot.h
+	$(CC) $(CFLAGS) $(SDL_CFLAGS) main.c mandelbrot.o -o mandl $(SDL_LDFLAGS)
 
+clean:
+	rm mandl mandelbrot.o
