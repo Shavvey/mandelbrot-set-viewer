@@ -31,11 +31,11 @@ int main(int argc, char *args[]) {
                                            SCREEN_WIDTH, SCREEN_HEIGHT);
 
   // Pixel Buffer Declaration
-  uint32_t *pixel_buffer =
+  uint32_t *pixelbuffer =
       malloc(sizeof(uint32_t) * SCREEN_HEIGHT * SCREEN_WIDTH);
 
   // Initializes Pixel Values to White
-  memset(pixel_buffer, 0xFF, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint32_t));
+  memset(pixelbuffer, 0xFF, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint32_t));
 
   // Complex Number and Data array declarations and heap allocation
 
@@ -93,7 +93,7 @@ int main(int argc, char *args[]) {
   struct Thread_Args *th_args_a =
       malloc(sizeof(struct Thread_Args) * N_THREADS);
   for (int i = 0; i < N_THREADS; i++) {
-    th_args_a[i].pixel_buffer = pixel_buffer;
+    th_args_a[i].pixel_buffer = pixelbuffer;
     th_args_a[i].len = SCREEN_WIDTH * SCREEN_HEIGHT;
     th_args_a[i].man_i = man_i;
     th_args_a[i].man_d = man_d;
@@ -118,7 +118,7 @@ int main(int argc, char *args[]) {
   double time_taken = end_sec - start_sec;
 
   printf("Time Taken: %lf seconds\n", time_taken);
-  mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+  mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
   /*
   //Single Thread
   clock_t start, end;
@@ -137,7 +137,7 @@ int main(int argc, char *args[]) {
   SDL_Event event; // Declare Event
   while (!ended) {
 
-    SDL_UpdateTexture(texture, NULL, pixel_buffer,
+    SDL_UpdateTexture(texture, NULL, pixelbuffer,
                       SCREEN_WIDTH * sizeof(uint32_t));
     // Poll for SDL Events
     while (SDL_PollEvent(&event)) {
@@ -152,7 +152,7 @@ int main(int argc, char *args[]) {
                               -1 * man_i->zoomfac + man_i->yoff,
                               1 * man_i->zoomfac + man_i->yoff);
           update_mandel_create_threads(th_args_a, threads);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
           break;
         }
         break;
@@ -166,69 +166,69 @@ int main(int argc, char *args[]) {
         if (event.key.keysym.sym == SDLK_1) {
           color_i->red_bias += 1;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_2) {
           color_i->green_bias += 1;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_3) {
           color_i->blue_bias += 1;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_q) {
           color_i->red_bias -= 1;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_w) {
           color_i->green_bias -= 1;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_e) {
           color_i->blue_bias -= 1;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_4) {
           color_i->color_coef += 5;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_r) {
           color_i->color_coef -= 5;
           print_Color_Info(color_i);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_EQUALS) {
           man_i->zoomfac *= 0.1;
           // mandel_update(man_i, man_d);
           update_mandel_create_threads(th_args_a, threads);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
         if (event.key.keysym.sym == SDLK_MINUS) {
           man_i->zoomfac *= 10;
           // mandel_update(man_i, man_d);
           update_mandel_create_threads(th_args_a, threads);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_t) {
           color_i->red_bias = 25;
           color_i->green_bias = 25;
           color_i->blue_bias = 25;
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
         }
 
         if (event.key.keysym.sym == SDLK_UP) {
@@ -319,7 +319,7 @@ int main(int argc, char *args[]) {
 
         if (event.key.keysym.sym == SDLK_RETURN) {
           update_mandel_create_threads(th_args_a, threads);
-          mandel_draw(pixel_buffer, man_d->complex_bin_array, color_i, man_i);
+          mandel_draw(pixelbuffer, man_d->complex_bin_array, color_i, man_i);
           printf("Refreshed!\n");
         }
 
@@ -346,7 +346,7 @@ int main(int argc, char *args[]) {
   free(man_d);
   free(man_i);
   free(color_i);
-  free(pixel_buffer);
+  free(pixelbuffer);
   if (texture)
     SDL_DestroyTexture(texture);
   if (renderer)
