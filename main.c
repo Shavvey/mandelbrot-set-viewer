@@ -5,9 +5,10 @@
 #define NANO_PER_SEC 1000000000.0
 
 int main(int argc, char *args[]) {
-
+  // var to track window
   SDL_Window *window = NULL;
-
+  // attempt to create SDL window, print out error if there is any problem in
+  // creation
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     printf("SDL Could Not Initialize! Error: %s\n", SDL_GetError());
     exit(1);
