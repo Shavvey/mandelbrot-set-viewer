@@ -1,8 +1,3 @@
-# A Quick Note
-
-I have most of the SDL binaries and header files included in this repository, but they may not work for your machine.
-[Here's the tutorial I followed to get SDL working on my M1 air.](https://medium.com/@edkins.sarah/set-up-sdl2-on-your-mac-without-xcode-6b0c33b723f7)
-
 # Example Output
 
 Here's a quick example of the renderer working:
@@ -17,4 +12,12 @@ Here's a quick example of the renderer working:
 - sdl.h
 - README.md
 
-NOTE: I won't be maintaining this project any further
+# Building the Project
+
+Renderer uses sdl, a c compiler, and make.
+So, you need to have all of these on your machine.
+Also, you will need the sdl libraries in your `PATH`
+in order for make to find them.
+
+If you have all of that, you should be able to type `make mandl`
+to build to project into a final executable, that's all.

@@ -23,6 +23,7 @@ int cindex(int x, int y, int width) { return ((y * width) + x); }
 
 struct Complex_n *complex_square(struct Complex_n *a,
                                  struct Complex_n_bin *bin) {
+
   bin->product->rc = ((a->rc) * (a->rc)) + (((a->ic) * (a->ic)) * -1);
   bin->product->ic = 2 * a->rc * a->ic;
 
@@ -43,15 +44,17 @@ struct Complex_n *complex_add(struct Complex_n *a, struct Complex_n *b,
 }
 
 double complex_abs(struct Complex_n *a) {
-  // return pow((a->rc)*(a->rc) + (a->ic)*(a->ic), 0.5); //Much Slower
+  // returns the absolute value of some comblex number using its real and
+  // imaginary part
   return sqrt((a->rc) * (a->rc) + (a->ic) * (a->ic));
 }
-
+// allocated memory a given struct
 void bin_allocate(struct Complex_n_bin *bin) {
   bin->sum = (struct Complex_n *)malloc(sizeof(struct Complex_n *));
   bin->product = (struct Complex_n *)malloc(sizeof(struct Complex_n *));
 }
 
+// free up a struct memory
 void bin_free(struct Complex_n_bin *bin) {
   free(bin->sum);
   free(bin->product);
@@ -84,7 +87,6 @@ struct Complex_n_bin *set_iterate(struct Complex_n *a, int iterations,
       bin->i = i;
     }
   }
-
   free(z);
   free(bin->product);
   return bin;
@@ -169,6 +171,7 @@ void *threaded_mandel_update(void *th_args) {
                           &((man_d->complex_bin_array)[i]));
     (man_d->complex_bin_array)[i] = *bin_cpy;
   }
+  // if the thread sucessfully completes its iteration print out its thread id
   printf("Thread %d Successful!\n", thread_id);
   return 0;
 }

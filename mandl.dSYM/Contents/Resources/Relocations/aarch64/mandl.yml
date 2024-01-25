@@ -1,0 +1,26 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     mandl
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000157C, symSize: 0x10F0 }
+  - { offsetInCU: 0x755, offset: 0x755, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000157C, symSize: 0x10F0 }
+  - { offsetInCU: 0x26, offset: 0x2068, size: 0x8, addend: 0x0, symName: _l_map, symObjAddr: 0x0, symBinAddr: 0x10000266C, symSize: 0xA0 }
+  - { offsetInCU: 0x1A4, offset: 0x21E6, size: 0x8, addend: 0x0, symName: _l_map, symObjAddr: 0x0, symBinAddr: 0x10000266C, symSize: 0xA0 }
+  - { offsetInCU: 0x220, offset: 0x2262, size: 0x8, addend: 0x0, symName: _cindex, symObjAddr: 0xA0, symBinAddr: 0x10000270C, symSize: 0x2C }
+  - { offsetInCU: 0x264, offset: 0x22A6, size: 0x8, addend: 0x0, symName: _complex_square, symObjAddr: 0xCC, symBinAddr: 0x100002738, symSize: 0x80 }
+  - { offsetInCU: 0x29A, offset: 0x22DC, size: 0x8, addend: 0x0, symName: _complex_setval, symObjAddr: 0x14C, symBinAddr: 0x1000027B8, symSize: 0x30 }
+  - { offsetInCU: 0x2DA, offset: 0x231C, size: 0x8, addend: 0x0, symName: _complex_add, symObjAddr: 0x17C, symBinAddr: 0x1000027E8, symSize: 0x60 }
+  - { offsetInCU: 0x31E, offset: 0x2360, size: 0x8, addend: 0x0, symName: _complex_abs, symObjAddr: 0x1DC, symBinAddr: 0x100002848, symSize: 0x3C }
+  - { offsetInCU: 0x346, offset: 0x2388, size: 0x8, addend: 0x0, symName: _bin_allocate, symObjAddr: 0x218, symBinAddr: 0x100002884, symSize: 0x44 }
+  - { offsetInCU: 0x36A, offset: 0x23AC, size: 0x8, addend: 0x0, symName: _bin_free, symObjAddr: 0x25C, symBinAddr: 0x1000028C8, symSize: 0x34 }
+  - { offsetInCU: 0x38E, offset: 0x23D0, size: 0x8, addend: 0x0, symName: _set_iterate, symObjAddr: 0x290, symBinAddr: 0x1000028FC, symSize: 0x160 }
+  - { offsetInCU: 0x3EE, offset: 0x2430, size: 0x8, addend: 0x0, symName: _mandel_update, symObjAddr: 0x3F0, symBinAddr: 0x100002A5C, symSize: 0x2FC }
+  - { offsetInCU: 0x482, offset: 0x24C4, size: 0x8, addend: 0x0, symName: _threaded_mandel_update, symObjAddr: 0x6EC, symBinAddr: 0x100002D58, symSize: 0x2F0 }
+  - { offsetInCU: 0x552, offset: 0x2594, size: 0x8, addend: 0x0, symName: _update_mandel_create_threads, symObjAddr: 0x9DC, symBinAddr: 0x100003048, symSize: 0x108 }
+  - { offsetInCU: 0x5BC, offset: 0x25FE, size: 0x8, addend: 0x0, symName: _mandel_draw, symObjAddr: 0xAE4, symBinAddr: 0x100003150, symSize: 0x1BC }
+  - { offsetInCU: 0x65E, offset: 0x26A0, size: 0x8, addend: 0x0, symName: _color_calc, symObjAddr: 0xCA0, symBinAddr: 0x10000330C, symSize: 0x154 }
+  - { offsetInCU: 0x6F6, offset: 0x2738, size: 0x8, addend: 0x0, symName: _print_Color_Info, symObjAddr: 0xDF4, symBinAddr: 0x100003460, symSize: 0x9C }
+  - { offsetInCU: 0x71C, offset: 0x275E, size: 0x8, addend: 0x0, symName: _print_Mandel_Input, symObjAddr: 0xE90, symBinAddr: 0x1000034FC, symSize: 0x90 }
+  - { offsetInCU: 0x742, offset: 0x2784, size: 0x8, addend: 0x0, symName: _print_cmd, symObjAddr: 0xF20, symBinAddr: 0x10000358C, symSize: 0xA4 }
+  - { offsetInCU: 0x777, offset: 0x27B9, size: 0x8, addend: 0x0, symName: _print_help, symObjAddr: 0xFC4, symBinAddr: 0x100003630, symSize: 0xD0 }
+...
