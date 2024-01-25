@@ -19,5 +19,5 @@ So, you need to have all of these on your machine.
 Also, you will need the sdl libraries in your `PATH`
 in order for make to find them.
 
-If you have all of that, you should be able to type `make mandl`
-to build to project into a final executable, that's all.
+If you have all of that, you should be able to type `make`
+to build the project into a final executable, that's all.
