@@ -159,6 +159,7 @@ void *threaded_mandel_update(void *th_args) {
     // Maps the pixel range to a much smaller range for viewing of the set,
     // linear scaling of coordinate space
     ((man_d->complex_array)[i]).rc =
+        // lerp function to linear map coordinate space
         l_map((i % width), 0.0f, man_i->width, -1, 1) * man_i->zoomfac +
         man_i->xoff;
     ((man_d->complex_array)[i]).ic =

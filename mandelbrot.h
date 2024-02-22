@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <time.h>
 #define N_THREADS 8
+// struct reperesenting each complex number
+
 struct Complex_n {
 
   double rc; // Real Component
