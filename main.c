@@ -1,7 +1,10 @@
 #include "mandelbrot.h"
 #include "sdl.h"
+// default screen width
 #define SCREEN_WIDTH 1000
+// default screen height
 #define SCREEN_HEIGHT 1000
+// define macro that shows how many nanoseconds are in a second
 #define NANO_PER_SEC 1000000000.0
 
 int main(int argc, char *args[]) {
@@ -11,7 +14,8 @@ int main(int argc, char *args[]) {
   // creation
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     printf("SDL Could Not Initialize! Error: %s\n", SDL_GetError());
-    exit(1);
+    // exit out of program we we cannot initialize the SDL window
+    exit(EXIT_FAILURE);
   }
 
   // Create Window with Some Parameters, SDL_WINDOW_SHOW Flag is set to make
@@ -20,8 +24,9 @@ int main(int argc, char *args[]) {
                             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                             SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (window == NULL) {
+    // we pointer the SDL windows fails we also need to exit out of the program
     printf("Window Could Not Be Created!: Error: %s", SDL_GetError());
-    exit(1);
+    exit(EXIT_FAILURE);
   }
 
   // Gets creates SDL Renderer and Texture
@@ -74,26 +79,40 @@ int main(int argc, char *args[]) {
       sizeof(struct Complex_n_bin) * SCREEN_WIDTH * SCREEN_HEIGHT);
   man_d->complex_array = (struct Complex_n *)malloc(
       sizeof(struct Complex_n) * SCREEN_WIDTH * SCREEN_HEIGHT);
-
+  // mandel input is stored as a struct and then updated using the formula,
+  // coloring depends on whether the value belongs in our set and does not
+  // belong in on set
   struct Mandel_Input *man_i = malloc(sizeof(struct Mandel_Input));
+  // sets the secreen width, the x values we will be iterating over
   man_i->width = SCREEN_WIDTH;
+  // set the screen heihgt, the y values we will be iterating over
   man_i->height = SCREEN_HEIGHT;
+  // number of iterations we do until we conclude whether x,y pair is inside the
+  // set or not inside the set
   man_i->num_iterations = num_iterations;
   man_i->xoff = xoff;
   man_i->yoff = yoff;
   man_i->zoomfac = zoomfac;
-
+  // obtains color information, can be changed using color bias settings
   struct Color_Info *color_i = malloc(sizeof(struct Color_Info));
   color_i->red_bias = red_bias;
   color_i->green_bias = green_bias;
   color_i->blue_bias = blue_bias;
   color_i->color_coef = color_coef;
 
-  // Multithreading
+  // create new threads for our process
   pthread_t threads[N_THREADS];
+  // threads are essentially divided using the window, so eight threads, then
+  // there will be eight equal sections of the window divided
   struct Thread_Args *th_args_a =
       malloc(sizeof(struct Thread_Args) * N_THREADS);
   for (int i = 0; i < N_THREADS; i++) {
+    // initialize each thread state, they each need to keep track of a few
+    // things: the pixelbuffer that they will be working on
+    // the amount of pixels they will each be responsible for
+    // the thread id that indicates how each thread will be identified
+    // the mandel input they are given so that they can recursive and identify
+    // which x,y complex pair belongs in our set
     th_args_a[i].pixel_buffer = pixelbuffer;
     th_args_a[i].len = SCREEN_WIDTH * SCREEN_HEIGHT;
     th_args_a[i].man_i = man_i;
